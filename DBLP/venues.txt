@@ -1,0 +1,127 @@
+AAAI
+AAAI/IAAI
+AAAI/IAAI, Vol. 1
+AAAI/IAAI, Vol. 2
+IJCAI
+IJCAI (1)
+IJCAI (2)
+ICML
+ICML (1)
+ICML (2)
+ICML (3)
+NIPS
+Artif. Intell.
+J. Artif. Intell. Res.
+IEEE Trans. Robotics
+IEEE Trans. Robotics and Automation
+ICRA
+ICRA (1)
+ICRA (2)
+ICRA (3)
+IROS
+IROS (1)
+IROS (2)
+IROS (3)
+Commun. ACM
+IEEE Computer
+ACM Comput. Surv.
+ACM Trans. Algorithms
+ACM Trans. Asian & Low-Resource Lang. Inf. Process.
+ACM Trans. Asian Lang. Inf. Process.
+ACM Trans. Comput.-Hum. Interact.
+ACM Trans. Comput. Log.
+ACM Trans. Comput. Syst.
+ACM Trans. Database Syst.
+ACM Trans. Design Autom. Electr. Syst.
+ACM Trans. Economics and Comput.
+ACM Trans. Embedded Comput. Syst.
+ACM Trans. Graph.
+ACM Trans. Inf. Syst.
+ACM Trans. Inf. Syst. Secur.
+ACM Trans. Internet Techn.
+ACM Trans. Management Inf. Syst.
+ACM Trans. Math. Softw.
+ACM Trans. Model. Comput. Simul.
+ACM Trans. Priv. Secur.
+ACM Trans. Program. Lang. Syst.
+ACM Trans. Softw. Eng. Methodol.
+ACM Trans. Spatial Algorithms and Systems
+IEEE/ACM Trans. Audio, Speech & Language Processing
+IEEE/ACM Trans. Comput. Biology Bioinform.
+IEEE/ACM Trans. Netw.
+IEEE Trans. Acoustics, Speech, and Signal Processing
+IEEE Trans. Aerospace and Electronic Systems
+IEEE Trans. Affective Computing
+IEEE Trans. Audio, Speech & Language Processing
+IEEE Trans. Automat. Contr.
+IEEE Trans. Automation Science and Engineering
+IEEE Trans. Autonomous Mental Development
+IEEE Trans. Big Data
+IEEE Trans. Biomed. Circuits and Systems
+IEEE Trans. Biomed. Engineering
+IEEE Trans. Circuits Syst. Video Techn.
+IEEE Trans. Cloud Computing
+IEEE Trans. Cogn. Comm. & Networking
+IEEE Trans. Cognitive and Developmental Systems
+IEEE Trans. Communications
+IEEE Trans. Comput. Intellig. and AI in Games
+IEEE Trans. Comput. Social Systems
+IEEE Trans. Computational Imaging
+IEEE Trans. Computers
+IEEE Trans. Consumer Electronics
+IEEE Trans. Contr. Sys. Techn.
+IEEE Trans. Control of Network Systems
+IEEE Trans. Cybernetics
+IEEE Trans. Dependable Sec. Comput.
+IEEE Trans. Education
+IEEE Trans. Electronic Computers
+IEEE Trans. Emerging Topics Comput.
+IEEE Trans. Emerging Topics in Comput. Intellig.
+IEEE Trans. Engineering Management
+IEEE Trans. Evolutionary Computation
+IEEE Trans. Fuzzy Systems
+IEEE Trans. Geoscience and Remote Sensing
+IEEE Trans. Haptics
+IEEE Trans. Human-Machine Systems
+IEEE Trans. Image Processing
+IEEE Trans. Industrial Electronics
+IEEE Trans. Industrial Informatics
+IEEE Trans. Information Forensics and Security
+IEEE Trans. Information Technology in Biomedicine
+IEEE Trans. Information Theory
+IEEE Trans. Instrumentation and Measurement
+IEEE Trans. Intelligent Transportation Systems
+IEEE Trans. Intelligent Vehicles
+IEEE Trans. Knowl. Data Eng.
+IEEE Trans. Med. Imaging
+IEEE Trans. Mob. Comput.
+IEEE Trans. Multi-Scale Computing Systems
+IEEE Trans. Multimedia
+IEEE Trans. Network and Service Management
+IEEE Trans. Network Science and Engineering
+IEEE Trans. Neural Netw. Learning Syst.
+IEEE Trans. Neural Networks
+IEEE Trans. on CAD of Integrated Circuits and Systems
+IEEE Trans. on Circuits and Systems
+IEEE Trans. Parallel Distrib. Syst.
+IEEE Trans. Pattern Anal. Mach. Intell.
+IEEE Trans. Prof. Communication
+IEEE Trans. Reliability
+IEEE Trans. Robotics
+IEEE Trans. Robotics and Automation
+IEEE Trans. Services Computing
+IEEE Trans. Signal and Information Processing over Networks
+IEEE Trans. Signal Processing
+IEEE Trans. Smart Grid
+IEEE Trans. Software Eng.
+IEEE Trans. Speech and Audio Processing
+IEEE Trans. Systems Science and Cybernetics
+IEEE Trans. Systems, Man, and Cybernetics
+IEEE Trans. Systems, Man, and Cybernetics, Part A
+IEEE Trans. Systems, Man, and Cybernetics, Part B
+IEEE Trans. Systems, Man, and Cybernetics, Part C
+IEEE Trans. Systems, Man, and Cybernetics: Systems
+IEEE Trans. Vehicular Technology
+IEEE Trans. Vis. Comput. Graph.
+IEEE Trans. VLSI Syst.
+IEEE Trans. Wireless Communications
