@@ -1,8 +1,9 @@
 from lxml import html, etree
 import requests
-import time
 import os.path
 import sys
+from util import make_fname, find_between, find_after, get_page, csv_clean_string
+from util import NIPS_is_paper as is_paper
 
 FILENAME = "nips" #.txt
 
@@ -15,69 +16,11 @@ SCRAPE_DELAY_BEFORE = 5.0 # Seconds
 SCRAPE_DELAY_RETRY = None # Sets to be equal to SCRAPE_DELAY_BEFORE
 
 def CSV_CLEAN_STRING( s ):
-    return s.replace( TEXT_DELIMITER, '' ).replace( CSV_SEPARATOR, '' ).replace( CSV_END_LINE, '' )
+    return s.replace( TEXT_DELIMITER, '' ).replace( CSV_SEPARATOR, '' ).replace( CSV_END_LINE, ' ' )
 #end CSV_CLEAN_STRING
 
 nips_books = list( reversed( [ ( 1988+ed, "https://papers.nips.cc/book/advances-in-neural-information-processing-systems-{ed}-{year}".format( ed = ed+1, year = 1988+ed) ) for ed in range(29) ] ) )
 nips_books.append( (1987, "https://papers.nips.cc/book/neural-information-processing-systems-1987") )
-
-def make_fname( s ):
-    r = [ '_' if c.isspace() else c for c in s if c.isalnum() or c.isspace() or c == '-' ]
-    return ( ''.join( r ) )[:40]
-#end make_fname
-
-def find_between(s, first, last):
-    try:
-        start = s.index( first ) + len( first )
-        end = s.index( last, start )
-        return s[start:end]
-    except ValueError:
-        return ""
-#end find_between
-
-def find_after(s, ss):
-    try:
-        start = s.index( ss ) + len( ss )
-        return s[start:]
-    except ValueError:
-        return ""
-#end find_between
-
-def is_paper( p ):
-    try:
-        _,_,_ = p.xpath( 'a' )[0].text, ",".join( filter( None, [ author.text for author in p.xpath( 'a[@class="author"]' ) ] ) ), p.xpath('a')[0].attrib['href']
-    except IndexError:
-        return False
-    return True
-#end is_paper
-
-def has_pdf( p ):
-    try:
-        c = p.getchildren()[1]
-        return isinstance( c, html.HtmlComment ) and "pdf" in c.text.rstrip().lower()
-    except IndexError:
-        return False
-    return False
-#end is_paper
-
-def get_page( url, delay_before=5.0, delay_retry=None ):
-    page = None
-    if delay_retry is None:
-        delay_retry = delay_before
-    #end if
-    time.sleep( delay_before )
-    while page is None:
-        try:
-            page = requests.get( url ) #,  headers={'User-Agent':'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:56.0) Gecko/20100101 Firefox/56.0'} )
-        except requests.exceptions.RequestException as e:
-            print( "Scraping unsucessful {}".format( e ), file=sys.stderr )
-            time.sleep( delay_retry )
-        #end try
-    #end while
-    return page
-#end is_paper
-
-
 
 with open( "{fname}.txt".format( fname = FILENAME ), mode = 'w', encoding = 'utf-8' ) as conf_file:
     for conf_year, conf_url in nips_books:
@@ -140,12 +83,12 @@ with open( "{fname}.txt".format( fname = FILENAME ), mode = 'w', encoding = 'utf
                 endl = '\n')
             )
             conf_file.write( "{year}{sep}{td}{id}{td}{sep}{td}{title}{td}{sep}{td}{authors}{td}{sep}{td}{url}{td}{sep}{td}{abstract}{td}{endl}".format(
-                year     = CSV_CLEAN_STRING( str( conf_year ) ),
-                id       = CSV_CLEAN_STRING( str( paper_id ) ),
-                title    = CSV_CLEAN_STRING( str( paper ) ),
-                authors  = CSV_CLEAN_STRING( str( author ) ),
-                url      = CSV_CLEAN_STRING( str( paper_url ) ),
-                abstract = CSV_CLEAN_STRING( str( abstract ) ),
+                year     = csv_clean_string( str( conf_year ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
+                id       = csv_clean_string( str( paper_id ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
+                title    = csv_clean_string( str( paper ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
+                authors  = csv_clean_string( str( author ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
+                url      = csv_clean_string( str( paper_url ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
+                abstract = csv_clean_string( str( abstract ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
                 td   = TEXT_DELIMITER,
                 sep  = CSV_SEPARATOR,
                 endl = CSV_END_LINE)

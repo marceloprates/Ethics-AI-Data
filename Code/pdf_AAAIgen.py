@@ -1,68 +1,12 @@
 from lxml import html, etree
 import requests
-import time
 import os.path
 import sys
+from util import make_fname, find_between, find_after, get_page
+from util import AAAI_is_paper as is_paper, AAAI_has_pdf as has_pdf
 #import PyPDF2
 
 aaai_confs_years = [2017,2016,2015,2014,2013,2012,2011,2010,2008,2007,2006,2005,2004,2002,2000,1999,1998,1997,1996,1994,1993,1992,1991,1990,1988,1987,1986,1984,1983,1982,1980]
-
-def make_fname( s ):
-    r = [ '_' if c.isspace() else c for c in s if c.isalnum() or c.isspace() or c == '-' ]
-    return ( ''.join( r ) )[:40]
-#end make_fname
-
-def find_between(s, first, last):
-    try:
-        start = s.index( first ) + len( first )
-        end = s.index( last, start )
-        return s[start:end]
-    except ValueError:
-        return ""
-#end find_between
-
-def find_after(s, ss):
-    try:
-        start = s.index( ss ) + len( ss )
-        return s[start:]
-    except ValueError:
-        return ""
-#end find_between
-
-def is_paper( p ):
-    try:
-        _,_,_ = p.xpath( 'a' )[0].text, p.xpath( 'i' )[0].text, p.xpath('a')[0].attrib['href']
-    except IndexError:
-        return False
-    return True
-#end is_paper
-
-def has_pdf( p ):
-    try:
-        c = p.getchildren()[1]
-        return isinstance( c, html.HtmlComment ) and "pdf" in c.text.rstrip().lower()
-    except IndexError:
-        return False
-    return False
-#end is_paper
-
-def get_page( url, delay_before=5.0, delay_retry=None ):
-    page = None
-    if delay_retry is None:
-        delay_retry = delay_before
-    #end if
-    time.sleep( delay_before )
-    while page is None:
-        try:
-            page = requests.get( url )
-        except requests.exceptions.RequestException as e:
-            print( "Scraping unsucessful {}".format( e ), file=sys.stderr )
-            time.sleep( delay_retry )
-        #end try
-    #end while
-    return page
-#end is_paper
-
 
 for conf_year in aaai_confs_years:
     conf_paper_id = 1

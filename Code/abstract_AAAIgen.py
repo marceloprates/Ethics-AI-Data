@@ -1,8 +1,9 @@
 from lxml import html, etree
 import requests
-import time
 import os.path
 import sys
+from util import make_fname, find_between, find_after, get_page, csv_clean_string
+from util import AAAI_is_paper as is_paper
 
 FILENAME = "aaai" #.txt
 
@@ -14,69 +15,7 @@ CSV_END_LINE = '\n' # End of entry for csv file
 SCRAPE_DELAY_BEFORE = 5.0 # Seconds
 SCRAPE_DELAY_RETRY = None # Sets to be equal to SCRAPE_DELAY_BEFORE
 
-def CSV_CLEAN_STRING( s ):
-    return s.replace( TEXT_DELIMITER, '' ).replace( CSV_SEPARATOR, '' ).replace( CSV_END_LINE, '' )
-#end CSV_CLEAN_STRING
-
 aaai_confs_years = [2017,2016,2015,2014,2013,2012,2011,2010,2008,2007,2006,2005,2004,2002,2000,1999,1998,1997,1996,1994,1993,1992,1991,1990,1988,1987,1986,1984,1983,1982,1980]
-
-def make_fname( s ):
-    r = [ '_' if c.isspace() else c for c in s if c.isalnum() or c.isspace() or c == '-' ]
-    return ( ''.join( r ) )[:40]
-#end make_fname
-
-def find_between(s, first, last):
-    try:
-        start = s.index( first ) + len( first )
-        end = s.index( last, start )
-        return s[start:end]
-    except ValueError:
-        return ""
-#end find_between
-
-def find_after(s, ss):
-    try:
-        start = s.index( ss ) + len( ss )
-        return s[start:]
-    except ValueError:
-        return ""
-#end find_between
-
-def is_paper( p ):
-    try:
-        _,_,_ = p.xpath( 'a' )[0].text, p.xpath( 'i' )[0].text, p.xpath('a')[0].attrib['href']
-    except IndexError:
-        return False
-    return True
-#end is_paper
-
-def has_pdf( p ):
-    try:
-        c = p.getchildren()[1]
-        return isinstance( c, html.HtmlComment ) and "pdf" in c.text.rstrip().lower()
-    except IndexError:
-        return False
-    return False
-#end is_paper
-
-def get_page( url, delay_before=5.0, delay_retry=None ):
-    page = None
-    if delay_retry is None:
-        delay_retry = delay_before
-    #end if
-    time.sleep( delay_before )
-    while page is None:
-        try:
-            page = requests.get( url ) #,  headers={'User-Agent':'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:56.0) Gecko/20100101 Firefox/56.0'} )
-        except requests.exceptions.RequestException as e:
-            print( "Scraping unsucessful {}".format( e ), file=sys.stderr )
-            time.sleep( delay_retry )
-        #end try
-    #end while
-    return page
-#end is_paper
-
-
 
 with open( "{fname}.txt".format( fname = FILENAME ), mode = 'w', encoding = 'utf-8' ) as conf_file:
     for conf_year in aaai_confs_years:
@@ -90,9 +29,9 @@ with open( "{fname}.txt".format( fname = FILENAME ), mode = 'w', encoding = 'utf
         conf_page.close()
         conf_tree.make_links_absolute( "https://www.aaai.org/Library/AAAI/" )
         conf_papers = conf_tree.xpath( '//div[@id="box6"]/div[@class="content"]/p[@class="left"]' )
-        l = [ ( ( '' if p.xpath( 'a' )[0].text is None else p.xpath( 'a' )[0].text) + ''.join( filter( None, [ subtext.text for subtext in p.xpath( 'a' )[0] ] ) ), p.xpath( 'i' )[0].text, p.xpath('a')[0].attrib['href'], p.getchildren()[1].text if has_pdf( p ) else None ) for p in conf_papers if is_paper( p ) ]
+        l = [ ( ( '' if p.xpath( 'a' )[0].text is None else p.xpath( 'a' )[0].text) + ''.join( filter( None, [ subtext.text for subtext in p.xpath( 'a' )[0] ] ) ), p.xpath( 'i' )[0].text, p.xpath('a')[0].attrib['href'] ) for p in conf_papers if is_paper( p ) ]
         # Create file
-        for paper, author, paper_url, commented_url in l:
+        for paper, author, paper_url in l:
             paper_id = None
             abstract = ''
             try:
@@ -148,12 +87,12 @@ with open( "{fname}.txt".format( fname = FILENAME ), mode = 'w', encoding = 'utf
                 endl = '\n')
             )
             conf_file.write( "{year}{sep}{td}{id}{td}{sep}{td}{title}{td}{sep}{td}{authors}{td}{sep}{td}{url}{td}{sep}{td}{abstract}{td}{endl}".format(
-                year     = CSV_CLEAN_STRING( str( conf_year ) ),
-                id       = CSV_CLEAN_STRING( str( paper_id ) ),
-                title    = CSV_CLEAN_STRING( str( paper ) ),
-                authors  = CSV_CLEAN_STRING( str( author ) ),
-                url      = CSV_CLEAN_STRING( str( paper_url ) ),
-                abstract = CSV_CLEAN_STRING( str( abstract ) ),
+                year     = csv_clean_string( str( conf_year ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
+                id       = csv_clean_string( str( paper_id ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
+                title    = csv_clean_string( str( paper ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
+                authors  = csv_clean_string( str( author ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
+                url      = csv_clean_string( str( paper_url ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
+                abstract = csv_clean_string( str( abstract ), TEXT_DELIMITER, CSV_SEPARATOR, CSV_END_LINE ),
                 td   = TEXT_DELIMITER,
                 sep  = CSV_SEPARATOR,
                 endl = CSV_END_LINE)
