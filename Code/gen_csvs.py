@@ -1,3 +1,5 @@
+"""Generates a CSV containing conferences that may match those in file "venuesb.txt" from DBLP's XML file."""
+
 import sys
 from lxml import etree
 

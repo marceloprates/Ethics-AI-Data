@@ -1,3 +1,5 @@
+"""Scraper for NIPS abstracts"""
+
 from lxml import html, etree
 import requests
 import os.path

@@ -1,3 +1,5 @@
+"""Scraper for AAAI abstracts"""
+
 from lxml import html, etree
 import requests
 import os.path
