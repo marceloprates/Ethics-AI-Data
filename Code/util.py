@@ -48,16 +48,7 @@ def AAAI_is_paper( p ):
     except IndexError:
         return False
     return True
-#end is_paper
-
-def AAAI_has_pdf( p ):
-    try:
-        c = p.getchildren()[1]
-        return isinstance( c, html.HtmlComment ) and "pdf" in c.text.rstrip().lower()
-    except IndexError:
-        return False
-    return False
-#end has_pdf
+#end AAAI_is_paper
 
 def NIPS_is_paper( p ):
     try:
@@ -65,17 +56,8 @@ def NIPS_is_paper( p ):
     except IndexError:
         return False
     return True
-#end is_paper
-
-def NIPS_has_pdf( p ):
-    try:
-        c = p.getchildren()[1]
-        return isinstance( c, html.HtmlComment ) and "pdf" in c.text.rstrip().lower()
-    except IndexError:
-        return False
-    return False
-#end has_pdf
+#end NIPS_is_paper
 
 def csv_clean_string( s, text_delimiter, csv_separator, csv_end_line ):
     return s.replace( text_delimiter, '' ).replace( csv_separator, '' ).replace( csv_end_line, ' ' )
-#end CSV_CLEAN_STRING
+#end csv_clean_string
