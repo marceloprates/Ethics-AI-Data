@@ -30,3 +30,4 @@ The python files are mostly configured with constants in the code.
 ## DBLP
 
 This folder contains the data generated from parsing the DBLP xml file, available at: [http://dblp.uni-trier.de/xml/](http://dblp.uni-trier.de/xml/)
+The version we used was downloaded 20/11/2017.
