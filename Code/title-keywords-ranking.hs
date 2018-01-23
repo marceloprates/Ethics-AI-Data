@@ -12,7 +12,7 @@ import Data.Ord
 import qualified Data.Text as T
 
 {- Custom list of special characters which are to be removed from each string in an attempt to "clean" them -}
-special_characters = ['.',',','-','$','#','&','(',')','\'','+','*','{','}',':']
+special_characters = "'\"!@#$%&%*()_-+=¬¹²³£¢{[]}\\§/;:<>ºª~^'`´|.·,01234567890"
 
 clean_string = filter (\x -> not $ elem x special_characters)
 
