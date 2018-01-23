@@ -26,13 +26,18 @@ stop_words = []
 with open('stop-words.txt','r') as f:
 	stop_words = f.read().split()
 
-our_keywords = []
+classical_keywords 	= []
+ethics_keywords 	= []
+trending_keywords 	= []
+keywords 			= []
 with open('../DBLP/classical_keywords.txt') as f:
-	our_keywords += f.read().split()
+	classical_keywords += f.read().split()
 with open('../DBLP/ethics_keywords.txt') as f:
-	our_keywords += f.read().split()
+	ethics_keywords += f.read().split()
 with open('../DBLP/trending_keywords.txt') as f:
-	our_keywords += f.read().split()
+	trending_keywords += f.read().split()
+
+keywords = classical_keywords + trending_keywords + ethics_keywords
 
 count1,count2 = 0,0
 # For each (title,abstract) pair:
@@ -41,7 +46,7 @@ for (title,abstract) in titles_and_abstracts:
 	abstract_words 	= map(lambda x: x.lower(), abstract.split())
 	# For each word in the title:
 	for word in abstract_words:
-		if (True or not word in stop_words) and (word in our_keywords) :
+		if (True or not word in stop_words) and (word in ethics_keywords ) :
 			count1 += 1
 			if (word in title_words):
 				count2 += 1
