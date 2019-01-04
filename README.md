@@ -1,6 +1,6 @@
 # Ethics-AI-Data
 
-This repository is related to the AIES-2018 submission "Towards Understanding and Quantifying the Role of Ethics in AI Research".
+This repository is related to the GCAI-2018 submission "Towards Understanding and Quantifying the Role of Ethics in AI Research".
 It contains three folders: Abstracts, Code and DBLP.
 
 ## Abstracts
