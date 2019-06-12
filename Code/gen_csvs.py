@@ -16,7 +16,7 @@ DATA_ITEMS = ["title", "booktitle", "journal", "volume", "year", "ee"]
 TDATA_ITEMS = ["key", "tag", "title", "booktitle", "journal", "volume", "year", "ee"]
 JDATA_ITEMS = ["key", "title", "journal", "volume", "year", "ee"]
 CDATA_ITEMS = ["key", "title", "booktitle", "year", "ee"]
-DBLP_SIZE = 11792843
+DBLP_SIZE = 13871537
 
 def clear_element(element):
 	element.clear()
@@ -110,6 +110,7 @@ def read_from_write_to( iter_parser, journal_csv_file, conference_csv_file, tras
 			)
 		#end if
 	#end for
+	print( "Total number of papers: {}".format( paperCounter ) )
 #end read_from_write_to
 
 def main():
