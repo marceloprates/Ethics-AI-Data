@@ -115,7 +115,7 @@ def read_from_write_to( iter_parser, journal_csv_file, conference_csv_file, tras
 def main():
 	with open( "jdblp.csv", mode = "w", encoding = "utf-8" ) as journal_csv_file:
 		with open( "cdblp.csv", mode = "w", encoding = "utf-8" ) as conference_csv_file:
-			with open( "trash.csv", mode = "w", encoding = "utf-8" ) as trash_csv_file:
+			with open( "fcdblp.csv", mode = "w", encoding = "utf-8" ) as trash_csv_file:
 				iter_parser = etree.iterparse(PATH_TO_XML, dtd_validation=True, events=("start", "end"))
 				read_from_write_to(iter_parser, journal_csv_file, conference_csv_file, trash_csv_file)
 			#end with

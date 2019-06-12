@@ -21,7 +21,7 @@ def CSV_CLEAN_STRING( s ):
     return s.replace( TEXT_DELIMITER, '' ).replace( CSV_SEPARATOR, '' ).replace( CSV_END_LINE, ' ' )
 #end CSV_CLEAN_STRING
 
-nips_books = list( reversed( [ ( 1988+ed, "https://papers.nips.cc/book/advances-in-neural-information-processing-systems-{ed}-{year}".format( ed = ed+1, year = 1988+ed) ) for ed in range(29) ] ) )
+nips_books = list( reversed( [ ( 1988+ed, "https://papers.nips.cc/book/advances-in-neural-information-processing-systems-{ed}-{year}".format( ed = ed+1, year = 1988+ed) ) for ed in range(31) ] ) )
 nips_books.append( (1987, "https://papers.nips.cc/book/neural-information-processing-systems-1987") )
 
 with open( "{fname}.txt".format( fname = FILENAME ), mode = 'w', encoding = 'utf-8' ) as conf_file:

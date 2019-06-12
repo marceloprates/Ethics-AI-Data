@@ -17,7 +17,7 @@ CSV_END_LINE = '\n' # End of entry for csv file
 SCRAPE_DELAY_BEFORE = 5.0 # Seconds
 SCRAPE_DELAY_RETRY = None # Sets to be equal to SCRAPE_DELAY_BEFORE
 
-aaai_confs_years = [2017,2016,2015,2014,2013,2012,2011,2010,2008,2007,2006,2005,2004,2002,2000,1999,1998,1997,1996,1994,1993,1992,1991,1990,1988,1987,1986,1984,1983,1982,1980]
+aaai_confs_years = [2018,2017,2016,2015,2014,2013,2012,2011,2010,2008,2007,2006,2005,2004,2002,2000,1999,1998,1997,1996,1994,1993,1992,1991,1990,1988,1987,1986,1984,1983,1982,1980]
 
 with open( "{fname}.txt".format( fname = FILENAME ), mode = 'w', encoding = 'utf-8' ) as conf_file:
     for conf_year in aaai_confs_years:
