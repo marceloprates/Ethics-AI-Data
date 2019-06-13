@@ -1,4 +1,5 @@
-
+# You can change the abstracts by changing the filename in the first "while open"
+# In the last for loop, change "keywords" for "ethics keywords" to obtain the Pr_e instead of Pr_k
 
 
 def chunks(l, n):
@@ -6,7 +7,7 @@ def chunks(l, n):
     for i in range(0, len(l), n):
         yield l[i:i + n]
 
-NUM_ABSTRACTS = 12078
+NUM_ABSTRACTS = 9663 # For AAAI, this is just for the progress reporting
 with open('../Abstracts/aaai.txt','r') as f:	
 	titles_and_abstracts = []
 	
@@ -53,6 +54,7 @@ for i, title_and_abstract in enumerate( titles_and_abstracts ):
 	abstract_words 	= map(lambda x: x.lower(), abstract.split())
 	# For each word in the title:
 	for word in abstract_words:
+	  # Change "keywords" for "ethics keywords" to obtain the Pr_e instead of Pr_k
 		if (True or not word in stop_words) and (word in keywords ) : #ethics_keywords ) :
 			count1 += 1
 			if (word in title_words):
