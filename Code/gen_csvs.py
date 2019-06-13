@@ -16,7 +16,7 @@ DATA_ITEMS = ["title", "booktitle", "journal", "volume", "year", "ee"]
 TDATA_ITEMS = ["key", "tag", "title", "booktitle", "journal", "volume", "year", "ee"]
 JDATA_ITEMS = ["key", "title", "journal", "volume", "year", "ee"]
 CDATA_ITEMS = ["key", "title", "booktitle", "year", "ee"]
-DBLP_SIZE = 11792843
+DBLP_SIZE = 13871537
 
 def clear_element(element):
 	element.clear()
@@ -110,12 +110,13 @@ def read_from_write_to( iter_parser, journal_csv_file, conference_csv_file, tras
 			)
 		#end if
 	#end for
+	print( "Total number of papers: {}".format( paperCounter ) )
 #end read_from_write_to
 
 def main():
 	with open( "jdblp.csv", mode = "w", encoding = "utf-8" ) as journal_csv_file:
 		with open( "cdblp.csv", mode = "w", encoding = "utf-8" ) as conference_csv_file:
-			with open( "trash.csv", mode = "w", encoding = "utf-8" ) as trash_csv_file:
+			with open( "fcdblp.csv", mode = "w", encoding = "utf-8" ) as trash_csv_file:
 				iter_parser = etree.iterparse(PATH_TO_XML, dtd_validation=True, events=("start", "end"))
 				read_from_write_to(iter_parser, journal_csv_file, conference_csv_file, trash_csv_file)
 			#end with
