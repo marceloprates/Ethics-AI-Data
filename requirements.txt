@@ -1,0 +1,6 @@
+pandas
+matplotlib
+re
+math
+os
+numpy
